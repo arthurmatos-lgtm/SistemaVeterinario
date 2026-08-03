@@ -1,69 +1,49 @@
 1. Cadastro Rápido de Pet
 Como recepcionista,
-
 Eu quero cadastrar um novo pet vinculando-o ao nome e telefone do tutor,
-
 Para que o animal tenha um registro no sistema antes da consulta.
 
 2. Busca de Paciente
 Como veterinário ou recepcionista,
-
 Eu quero pesquisar um pet pelo nome do animal ou CPF do tutor,
-
 Para que eu encontre a ficha do paciente rapidamente no atendimento.
 
 3. Agendar Consulta
 Como recepcionista,
-
 Eu quero marcar uma consulta na agenda do veterinário escolhendo data e hora,
-
 Para que o horário fique reservado para aquele pet.
 
 4. Anotar Peso do Pet
 Como veterinário,
-
 Eu quero registrar o peso atual do animal na consulta,
-
 Para que seja possível acompanhar a evolução do peso ao longo do tempo.
 
 5. Digitar Histórico da Consulta
 Como veterinário,
-
 Eu quero escrever o motivo da consulta e os sintomas do pet em um campo de texto,
-
 Para que o histórico de saúde fique salvo no prontuário.
 
 6. Imprimir Receita Médica
 Como veterinário,
-
 Eu quero digitar os remédios e imprimir a receita em papel,
-
 Para que o tutor saiba como dar os medicamentos em casa.
 
 7. Solicitar Exame de Sangue
 Como veterinário,
-
 Eu quero marcar em uma lista os exames de sangue que o pet precisa fazer,
-
 Para que o tutor possa levar o pedido ao laboratório.
 
 8. Anexar Foto ou Raio-X
 Como veterinário,
-
 Eu quero fazer upload de uma foto ou arquivo de raio-X na ficha do pet,
-
 Para que as imagens do tratamento fiquem guardadas no prontuário.
 
 9. Lançar Valor do Atendimento
 Como recepcionista,
-
 Eu quero registrar os serviços cobrados (consulta, vacina, exames) na conta do cliente,
-
 Para que o tutor possa realizar o pagamento na recepção.
 
 10. Marcar Retorno
 Como recepcionista,
-
 Eu quero agendar a data de retorno do pet após o tratamento,
-
 Para que o veterinário possa reavaliar o paciente no dia correto.
