@@ -1,42 +1,35 @@
-Prioridade Alta
-[Agendamento] Tela de Agenda
+# Prioridade Alta
 
+[Agendamento] Tela de Agenda
 Criar interface para visualizar, agendar, remarcar e cancelar horários de consultas por veterinário.
 
 [Consultas] Cadastro do Pet e Tutor
-
 Criar formulário simples para registrar e buscar o pet vinculado ao seu dono.
 
 [Consultas] Prontuário do Atendimento
-
 Criar tela de consulta para registrar o peso, histórico e os sintomas do paciente.
 
 [Receituário] Gerador de Receitas
-
 Criar tela para digitar a prescrição e gerar um documento formatado para impressão.
 
-Prioridade Média (Facilita o dia a dia da clínica)
-[Exames] Solicitação de Exames
+# Prioridade Média (Facilita o dia a dia da clínica)
 
+[Exames] Solicitação de Exames
 Criar funcionalidade para selecionar e emitir pedidos de exames básicos (sangue, Raio-X, ultrassom).
 
 [Exames] Anexo de Resultados
-
 Permite fazer o upload de arquivos (PDFs/Imagens) diretamente na ficha de exames do pet.
 
 [Receituário] Envio via WhatsApp / PDF
-
 Botão para gerar a receita em PDF e enviar o link/arquivo direto para o tutor.
 
-Prioridade Baixa (Melhorias e Automações)
-[Agendamento] Lembretes por Mensagem
+# Prioridade Baixa (Melhorias e Automações)
 
+[Agendamento] Lembretes por Mensagem
 Notificação automática para o tutor lembrando o dia e horário da consulta.
 
 [Receituário] Modelos Salvos
-
 Criar lista de receitas pré-prontas (ex: vermifugação, otite) para aplicar em 1 clique.
 
 [Consultas] Alerta Visual de Alergias
-
 Exibir uma tag em destaque na ficha do pet caso ele tenha alguma alergia grave.
