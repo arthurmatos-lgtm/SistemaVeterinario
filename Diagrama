@@ -1,19 +1,12 @@
-### 📐 Diagrama de Classes (Sistema Veterinário / Petshop)
-
-```mermaid
-classDiagram
-    direction LR
-
-    class Tutor {
+Tutor
         +int id
         +String nome
         +String cpf
         +String telefone
         +String email
         +cadastrar()
-    }
 
-    class Pet {
+class Pet 
         +int id
         +String nome
         +String especie
@@ -21,9 +14,8 @@ classDiagram
         +float peso
         +String alergias
         +cadastrar()
-    }
 
-    class Consulta {
+Consulta 
         +int id
         +DateTime dataHora
         +String sintomas
@@ -31,49 +23,10 @@ classDiagram
         +float pesoAferido
         +agendar()
         +registrar()
-    }
 
-    class Receituario {
+Receituario 
         +int id
         +String medicamentos
         +String modoDeUso
         +DateTime dataEmissao
         +gerarPDF()
-    }
-
-    Tutor --> Pet
-    Pet --> Consulta
-    Consulta --> Receituario
-```
-
----
-
-### 📊 Detalhamento das Entidades e Atributos
-
-| Classe | Atributo / Método | Tipo | Descrição |
-| :--- | :--- | :--- | :--- |
-| **Tutor** | `id` | `int` | Identificador único do tutor |
-| | `nome` | `String` | Nome completo do proprietário do pet |
-| | `cpf` | `String` | Documento CPF do tutor |
-| | `telefone` | `String` | Número de telefone/WhatsApp |
-| | `email` | `String` | Endereço de e-mail principal |
-| | `cadastrar()` | *Método* | Função para cadastrar novo tutor no sistema |
-| **Pet** | `id` | `int` | Identificador único do pet |
-| | `nome` | `String` | Nome do animal |
-| | `especie` | `String` | Espécie (ex: Cão, Gato) |
-| | `raca` | `String` | Raça do animal |
-| | `peso` | `float` | Peso em kg |
-| | `alergias` | `String` | Lista/descrição de alergias |
-| | `cadastrar()` | *Método* | Função para registrar novo pet vinculado ao tutor |
-| **Consulta** | `id` | `int` | Identificador da consulta |
-| | `dataHora` | `DateTime` | Data e horário agendado/realizado |
-| | `sintomas` | `String` | Descrição dos sintomas apresentados |
-| | `status` | `String` | Status da consulta (ex: Agendada, Concluída) |
-| | `pesoAferido` | `float` | Peso registrado durante o atendimento |
-| | `agendar()` | *Método* | Realiza o agendamento da consulta |
-| | `registrar()` | *Método* | Salva o prontuário/histórico do atendimento |
-| **Receituario** | `id` | `int` | Identificador da receita médica |
-| | `medicamentos` | `String` | Lista de remédios prescritos |
-| | `modoDeUso` | `String` | Posologia e orientações |
-| | `dataEmissao` | `DateTime` | Data de geração do documento |
-| | `gerarPDF()` | *Método* | Exporta a receita em formato PDF para impressão |
