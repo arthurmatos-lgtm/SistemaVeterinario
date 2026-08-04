@@ -1,0 +1,35 @@
+Tutor
+Representa o dono do animal, responsável pelo cadastro e pelos pagamentos. 
++int id 
++String nome 
++String cpf 
++String telefone 
++String email 
++cadastrar()
+
+Pet
+Representa o animal atendido no sistema, vinculado a um tutor. 
++int id 
++String nome 
++String especie 
++String raca 
++float peso 
++String alergias 
++cadastrar()
+
+consulta
+Representa o evento central da clínica (marcar horário e registrar histórico). 
++int id 
++DateTime dataHora 
++String sintomas 
++String status 
++float pesoAferido +agendar() 
++registrar()
+
+Receituario
+Representa a prescrição emitida durante a consulta para entregar ao tutor.
++int id 
++String medicamentos 
++String modoDeUso 
++DateTime dataEmissao 
++gerarPDF()
