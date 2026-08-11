@@ -3,35 +3,3 @@ import java.time.LocalDateTime;
 public class Main {
     public static void main(String[] args) {
         System.out.println("=== SISTEMA VETERINÁRIO - DEMONSTRAÇÃO ===\n");
-
-        // 1. Instanciando e cadastrando o Tutor
-        Tutor tutor1 = new Tutor(1, "Arthur Passos", "123.456.789-00", "(51) 99999-8888", "arthur@email.com");
-        tutor1.cadastrar();
-
-        // 2. Instanciando e cadastrando o Pet vinculado ao Tutor
-        Pet pet1 = new Pet(101, "Thor", "Cão", "Golden Retriever", 31.5f, "Nenhuma", tutor1);
-        pet1.cadastrar();
-
-        System.out.println("\n----------------------------------------------");
-
-        // 3. Agendando e realizando uma Consulta para o Pet
-        LocalDateTime dataHoraConsulta = LocalDateTime.of(2026, 8, 15, 14, 30);
-        Consulta consulta1 = new Consulta(501, dataHoraConsulta, "Apatia e falta de apetite", 31.2f, pet1);
-        
-        consulta1.agendar();
-        consulta1.registrar();
-
-        System.out.println("----------------------------------------------");
-
-        // 4. Emitindo o Receituário da Consulta
-        Receituario receita1 = new Receituario(
-            901, 
-            "Anti-inflamatório 10mg, Vitamina C", 
-            "Tomar 1 comprimido a cada 12 horas por 5 dias.", 
-            LocalDateTime.now(), 
-            consulta1
-        );
-
-        receita1.gerarPDF();
-    }
-}
