@@ -1,0 +1,39 @@
+// Consulta.java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Consulta {
+    private int id;
+    private LocalDateTime dataHora;
+    private String sintomas;
+    private String status;
+    private float pesoAferido;
+    private Pet pet;
+
+    public Consulta(int id, LocalDateTime dataHora, String sintomas, float pesoAferido, Pet pet) {
+        this.id = id;
+        this.dataHora = dataHora;
+        this.sintomas = sintomas;
+        this.pesoAferido = pesoAferido;
+        this.pet = pet;
+        this.status = "Pendente";
+    }
+
+    public void agendar() {
+        this.status = "Agendada";
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        System.out.println("Consulta #" + this.id + " agendada para " + this.dataHora.format(fmt) + " (Pet: " + this.pet.getNome() + ").");
+    }
+
+    public void registrar() {
+        this.status = "Realizada";
+        System.out.println("Consulta #" + this.id + " realizada. Sintomas: '" + this.sintomas + "', Peso Aferido: " + this.pesoAferido + " kg.");
+    }
+
+    public int getId() { return id; }
+    public LocalDateTime getDataHora() { return dataHora; }
+    public String getSintomas() { return sintomas; }
+    public String getStatus() { return status; }
+    public float getPesoAferido() { return pesoAferido; }
+    public Pet getPet() { return pet; }
+}
