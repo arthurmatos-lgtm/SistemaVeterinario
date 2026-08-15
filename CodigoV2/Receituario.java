@@ -1,0 +1,45 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Receituario {
+    private int id;
+    private String medicamentos;
+    private String modoDeUso;
+    private LocalDateTime dataEmissao;
+    private Consulta consulta;
+
+    public Receituario(int id, String medicamentos, String modoDeUso, LocalDateTime dataEmissao, Consulta consulta) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("O ID do Receituário deve ser um número positivo.");
+        }
+        if (medicamentos == null || medicamentos.trim().isEmpty()) {
+            throw new IllegalArgumentException("Os medicamentos não podem estar em branco.");
+        }
+        if (consulta == null) {
+            throw new IllegalArgumentException("O Receituário precisa estar associado a uma Consulta.");
+        }
+
+        this.id = id;
+        this.medicamentos = medicamentos;
+        this.modoDeUso = modoDeUso;
+        this.dataEmissao = dataEmissao;
+        this.consulta = consulta;
+    }
+
+    public void gerarPDF() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        System.out.println("\n--- [PDF GERADO: RECEITUÁRIO #" + this.id + "] ---");
+        System.out.println("Data de Emissão: " + this.dataEmissao.format(fmt));
+        System.out.println("Paciente (Pet): " + this.consulta.getPet().getNome());
+        System.out.println("Tutor: " + this.consulta.getPet().getTutor().getNome());
+        System.out.println("Medicamentos: " + this.medicamentos);
+        System.out.println("Modo de Uso: " + this.modoDeUso);
+        System.out.println("----------------------------------------------\n");
+    }
+
+    public int getId() { return id; }
+    public String getMedicamentos() { return medicamentos; }
+    public String getModoDeUso() { return modoDeUso; }
+    public LocalDateTime getDataEmissao() { return dataEmissao; }
+    public Consulta getConsulta() { return consulta; }
+}
