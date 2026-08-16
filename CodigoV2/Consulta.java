@@ -10,42 +10,45 @@ public class Consulta {
     private Pet pet;
 
     public Consulta(int id, LocalDateTime dataHora, String sintomas, float pesoAferido, Pet pet) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("O ID da Consulta deve ser um número positivo.");
-        }
-        if (dataHora == null) {
-            throw new IllegalArgumentException("A data e hora da Consulta não podem ser nulas.");
-        }
-        if (pesoAferido <= 0) {
-            throw new IllegalArgumentException("O peso aferido na consulta deve ser maior que zero.");
-        }
-        if (pet == null) {
-            throw new IllegalArgumentException("A Consulta precisa ter um Pet associado.");
-        }
+        if (id <= 0) throw new IllegalArgumentException("ID da Consulta inválido.");
+        if (dataHora == null) throw new IllegalArgumentException("Data/Hora inválida.");
+        if (pesoAferido <= 0) throw new IllegalArgumentException("Peso aferido inválido.");
+        if (pet == null) throw new IllegalArgumentException("Pet inválido.");
 
         this.id = id;
         this.dataHora = dataHora;
         this.sintomas = sintomas;
         this.pesoAferido = pesoAferido;
         this.pet = pet;
-        this.status = StatusConsulta.PENDENTE;
+        this.status = StatusConsulta.PENDENTE; 
     }
 
     public void agendar() {
+        if (this.status == StatusConsulta.CANCELADA) {
+            throw new IllegalStateException("Não é possível agendar uma consulta cancelada.");
+        }
         this.status = StatusConsulta.AGENDADA;
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        System.out.println("Consulta #" + this.id + " agendada para " + this.dataHora.format(fmt) + " (Pet: " + this.pet.getNome() + ").");
+        System.out.println("Consulta #" + this.id + " alterada para status: " + this.status);
     }
 
-    public void registrar() {
+    public void realizar() {
+        if (this.status != StatusConsulta.AGENDADA) {
+            throw new IllegalStateException("A consulta precisa estar agendada para ser realizada.");
+        }
         this.status = StatusConsulta.REALIZADA;
-        System.out.println("Consulta #" + this.id + " realizada. Sintomas: '" + this.sintomas + "', Peso Aferido: " + this.pesoAferido + " kg.");
+        this.pet.atualizarPeso(this.pesoAferido); // Atualiza o estado do Pet também
+        System.out.println("Consulta #" + this.id + " alterada para status: " + this.status);
+    }
+
+    public void cancelar() {
+        if (this.status == StatusConsulta.REALIZADA) {
+            throw new IllegalStateException("Não é possível cancelar uma consulta já realizada.");
+        }
+        this.status = StatusConsulta.CANCELADA;
+        System.out.println("Consulta #" + this.id + " alterada para status: " + this.status);
     }
 
     public int getId() { return id; }
-    public LocalDateTime getDataHora() { return dataHora; }
-    public String getSintomas() { return sintomas; }
     public StatusConsulta getStatus() { return status; }
-    public float getPesoAferido() { return pesoAferido; }
     public Pet getPet() { return pet; }
 }
