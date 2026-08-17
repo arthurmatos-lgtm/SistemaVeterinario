@@ -32,7 +32,7 @@ public class Pet {
         this.peso = novoPeso;
     }
 
-    // --- GETTERS (Necessários para acessar os atributos private) ---
+    // GETTERS 
     public int getId() { return id; }
     public String getNome() { return nome; }
     public EspeciePet getEspecie() { return especie; }
