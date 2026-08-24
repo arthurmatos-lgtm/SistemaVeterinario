@@ -1,12 +1,45 @@
-# SistemaVeterinario
+# Sistema Veterinário (Projeto de Demonstração)
 
-Visão Geral do Sistema de Gestão Veterinária
-O Sistema de Gestão Veterinária é uma plataforma integrada desenvolvida para otimizar o fluxo de trabalho de clínicas, hospitais e veterinários autônomos. O sistema centraliza a rotina operacional em quatro pilares fundamentais: Agendamento, Atendimento Clínico (Consultas).
+> Projeto desenvolvido para a disciplina de Fundamentos de Programação Orientada a Objetos — ADS — ULBRA — 2026/2.
 
-Agendamento: Tela de agenda para marcar, ver e mudar horários de atendimento.
+## Domínio
 
-Consultas: Tela de prontuário para preencher a ficha do pet durante a consulta.
+Sistema de controle de agendamentos, fichas de pacientes e acompanhamento de consultas em uma clínica veterinária.
 
-Receituário: Tela de prescrição para gerar a receita e enviar ao tutor.
+## Problema
 
-Exames: Tela de pedidos e laudos para anexar os resultados na ficha.
+Clínicas veterinárias de pequeno e médio porte enfrentam dificuldades para manter o histórico de saúde dos animais organizado, controlar as etapas dos atendimentos sem erros operacionais e validar dados essenciais (como impedimento de peso negativo ou cadastros incompletos) ao longo do processo.
+
+## Usuários
+
+* Recepcionista da clínica
+* Veterinário / Profissional de saúde
+* Tutor / Cliente
+
+## Funcionalidades iniciais
+
+* Cadastrar tutores e seus dados de contato
+* Registrar animais de estimação associados a um tutor
+* Agendar e controlar o status de consultas
+* Atualizar o peso do animal automaticamente ao realizar um atendimento
+* Bloquear a criação ou modificação de registros com dados inválidos
+* Consultar o estado atual do atendimento do paciente
+
+## Estrutura do projeto
+
+```text
+src/main/java/br/com/sistemaVeterinario/
+├── model/                                     # classes de domínio e enums
+│   ├── Consulta.java
+│   ├── EspeciePet.java
+│   ├── Pet.java
+│   ├── StatusConsulta.java
+│   └── Tutor.java
+└── service/                                   # ponto de entrada da aplicação
+    └── Main.java
+
+```
+
+## Integrantes
+
+Arthur Passos de Matos
