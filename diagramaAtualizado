@@ -1,0 +1,74 @@
++------------------------------------+
+|               Tutor                |
++------------------------------------+
+| - int id                           |
+| - String nome                      |
+| - String cpf                       |
+| - String telefone                  |
+| - String email                     |
++------------------------------------+
+| + getId() int                      |
+| + getNome() String                 |
+| + getCpf() String                  |
+| + getTelefone() String             |
+| + getEmail() String                |
+| + setTelefone(String) void         |
+| + setEmail(String) void            |
++------------------------------------+
+
++------------------------------------+
+|                Pet                 |
++------------------------------------+
+| - int id                           |
+| - String nome                      |
+| - EspeciePet especie               |
+| - String raca                      |
+| - float peso                       |
+| - String alergias                  |
+| - Tutor tutor                      |
++------------------------------------+
+| + atualizarPeso(float) void        |
+| + getId() int                      |
+| + getNome() String                 |
+| + getEspecie() EspeciePet          |
+| + getRaca() String                 |
+| + getPeso() float                  |
+| + getAlergias() String             |
+| + getTutor() Tutor                 |
++------------------------------------+
+
++------------------------------------+
+|              Consulta              |
++------------------------------------+
+| - int id                           |
+| - LocalDateTime dataHora           |
+| - String sintomas                  |
+| - float pesoAferido                |
+| - StatusConsulta status            |
+| - Pet pet                          |
++------------------------------------+
+| + agendar() void                   |
+| + realizar() void                  |
+| + getId() int                      |
+| + getDataHora() LocalDateTime      |
+| + getSintomas() String             |
+| + getPesoAferido() float           |
+| + getStatus() StatusConsulta       |
+| + getPet() Pet                     |
++------------------------------------+
+
++------------------------------------+
+|            Receituario             |
++------------------------------------+
+| - int id                           |
+| - String medicamentos              |
+| - String modoDeUso                 |
+| - LocalDateTime dataEmissao        |
+| - Consulta consulta                |
++------------------------------------+
+| + getId() int                      |
+| + getMedicamentos() String         |
+| + getModoDeUso() String            |
+| + getDataEmissao() LocalDateTime   |
+| + getConsulta() Consulta           |
++------------------------------------+
