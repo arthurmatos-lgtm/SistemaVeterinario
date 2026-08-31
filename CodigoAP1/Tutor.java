@@ -1,5 +1,3 @@
-package br.com.sistemaVeterinario.model;
-
 public class Tutor {
     private int id;
     private String nome;
