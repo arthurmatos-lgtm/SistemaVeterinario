@@ -28,7 +28,6 @@ Clínicas veterinárias de pequeno e médio porte enfrentam dificuldades para ma
 ## Estrutura do projeto
 
 ```text
-src/main/java/br/com/sistemaVeterinario/
 ├── model/                                     # classes de domínio e enums
 │   ├── Consulta.java
 │   ├── EspeciePet.java
