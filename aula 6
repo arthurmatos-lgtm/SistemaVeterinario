@@ -1,0 +1,17 @@
+public class Tutor {
+    private final List<Pet> pets = new ArrayList<>();
+
+    public void adicionarPet(Pet pet) {
+        if (pet == null) {
+            throw new IllegalArgumentException("Pet não pode ser nulo.");
+        }
+        if (pets.contains(pet)) {
+            throw new IllegalStateException("Este Pet já está cadastrado para este tutor.");
+        }
+        pets.add(pet);
+    }
+
+    public List<Pet> getPets() {
+        return List.copyOf(pets);
+    }
+}
