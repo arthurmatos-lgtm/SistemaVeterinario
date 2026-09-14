@@ -1,74 +1,54 @@
-+------------------------------------+
-|               Tutor                |
-+------------------------------------+
-| - int id                           |
-| - String nome                      |
-| - String cpf                       |
-| - String telefone                  |
-| - String email                     |
-+------------------------------------+
-| + getId() int                      |
-| + getNome() String                 |
-| + getCpf() String                  |
-| + getTelefone() String             |
-| + getEmail() String                |
-| + setTelefone(String) void         |
-| + setEmail(String) void            |
-+------------------------------------+
-
-+------------------------------------+
-|                Pet                 |
-+------------------------------------+
-| - int id                           |
-| - String nome                      |
-| - EspeciePet especie               |
-| - String raca                      |
-| - float peso                       |
-| - String alergias                  |
-| - Tutor tutor                      |
-+------------------------------------+
-| + atualizarPeso(float) void        |
-| + getId() int                      |
-| + getNome() String                 |
-| + getEspecie() EspeciePet          |
-| + getRaca() String                 |
-| + getPeso() float                  |
-| + getAlergias() String             |
-| + getTutor() Tutor                 |
-+------------------------------------+
-
-+------------------------------------+
-|              Consulta              |
-+------------------------------------+
-| - int id                           |
-| - LocalDateTime dataHora           |
-| - String sintomas                  |
-| - float pesoAferido                |
-| - StatusConsulta status            |
-| - Pet pet                          |
-+------------------------------------+
-| + agendar() void                   |
-| + realizar() void                  |
-| + getId() int                      |
-| + getDataHora() LocalDateTime      |
-| + getSintomas() String             |
-| + getPesoAferido() float           |
-| + getStatus() StatusConsulta       |
-| + getPet() Pet                     |
-+------------------------------------+
-
-+------------------------------------+
-|            Receituario             |
-+------------------------------------+
-| - int id                           |
-| - String medicamentos              |
-| - String modoDeUso                 |
-| - LocalDateTime dataEmissao        |
-| - Consulta consulta                |
-+------------------------------------+
-| + getId() int                      |
-| + getMedicamentos() String         |
-| + getModoDeUso() String            |
-| + getDataEmissao() LocalDateTime   |
-| + getConsulta() Consulta           |
-+------------------------------------+
++-------------------+
+                  |   <<enumeration>> |
+                  |    EspeciePet     |
+                  +-------------------+
+                  | CAO               |
+                  | GATO              |
+                  | AVE               |
+                  | ROEDOR            |
+                  | OUTRO             |
+                  +-------------------+
+                            ^
+                            |
++-------------------+       |           +----------------------------------+
+|       Tutor       |       |           |               Pet                |
++-------------------+       |           +----------------------------------+
+| - id: int         |       |           | - id: int                        |
+| - nome: String    |       |           | - nome: String                   |
+| - cpf: String     |       |           | - especie: EspeciePet            |
+| - telefone: String|       |           | - raca: String                   |
+| - email: String   |       |           | - peso: float                    |
+| - pets: List<Pet> |       |           | - alergias: String               |
++-------------------+ 1   0..*          | - tutor: Tutor                   |
+| + adicionarPet()  |-------------------| - historicoConsultas: List<Cons.>|
+| + buscarPet()     |                   +----------------------------------+
+| + removerPet()    |                             1 |
+| + getPets()       |                               |
++-------------------+                               |
+                                                    | 0..*
+                  +-------------------+             |
+                  |   <<enumeration>> |             |
+                  |  StatusConsulta   |             v
+                  +-------------------+    +-------------------------------+
+                  | AGENDADA          |<---|           Consulta            |
+                  | REALIZADA         |    +-------------------------------+
+                  | CANCELADA         |    | - id: int                     |
+                  +-------------------+    | - dataHora: LocalDateTime     |
+                                           | - sintomas: String            |
+                                           | - pesoAferido: float          |
+                                           | - status: StatusConsulta      |
+                                           | - pet: Pet                    |
+                                           +-------------------------------+
+                                                      1 |
+                                                        |
+                                                        | 0..1
+                                                        v
+                                           +-------------------------------+
+                                           |          Receituario          |
+                                           +-------------------------------+
+                                           | - id: int                     |
+                                           | - medicamentos: String        |
+                                           | - modoDeUso: String           |
+                                           | - dataEmissao: LocalDateTime  |
+                                           | - consulta: Consulta          |
+                                           +-------------------------------+
