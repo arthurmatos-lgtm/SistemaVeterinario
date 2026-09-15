@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class Tutor {
     private int id;
     private String nome;
@@ -5,28 +9,17 @@ public class Tutor {
     private String telefone;
     private String email;
 
-    public Tutor(int id, String nome, String cpf, String telefone, String email) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("ID do Tutor deve ser maior que zero.");
-        }
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome do Tutor é obrigatório.");
-        }
-        
-        // Validação de CPF formatado
-        if (cpf == null || cpf.trim().isEmpty()) {
-            throw new IllegalArgumentException("CPF do Tutor é obrigatório.");
-        }
-        if (!cpf.contains(".") || !cpf.contains("-")) {
-            throw new IllegalArgumentException("CPF deve estar formatado (ex: 000.000.000-00).");
-        }
+    // Interface List + inicialização com ArrayList
+    private final List<Pet> pets = new ArrayList<>();
 
-        // Validação de E-mail com @
-        if (email == null || email.trim().isEmpty()) {
-            throw new IllegalArgumentException("E-mail do Tutor é obrigatório.");
+    public Tutor(int id, String nome, String cpf, String telefone, String email) {
+        if (id <= 0) throw new IllegalArgumentException("ID do Tutor deve ser maior que zero.");
+        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("Nome é obrigatório.");
+        if (cpf == null || !cpf.contains(".") || !cpf.contains("-")) {
+            throw new IllegalArgumentException("CPF deve estar formatado.");
         }
-        if (!email.contains("@")) {
-            throw new IllegalArgumentException("E-mail do Tutor deve conter o caractere '@'.");
+        if (email == null || !email.contains("@")) {
+            throw new IllegalArgumentException("E-mail inválido.");
         }
 
         this.id = id;
@@ -36,20 +29,44 @@ public class Tutor {
         this.email = email;
     }
 
+    // INCLUSÃO COM VALIDAÇÃO DE NULL E DUPLICIDADE
+    public void adicionarPet(Pet pet) {
+        if (pet == null) {
+            throw new IllegalArgumentException("Pet não pode ser nulo.");
+        }
+        if (pets.contains(pet)) {
+            throw new IllegalStateException("Este Pet já está cadastrado para este tutor.");
+        }
+        pets.add(pet);
+    }
+
+    // CONSULTA COM OPTIONAL
+    public Optional<Pet> buscarPetPorId(int idPet) {
+        return pets.stream()
+                .filter(p -> p.getId() == idPet)
+                .findFirst();
+    }
+
+    // REMOÇÃO
+    public boolean removerPet(Pet pet) {
+        return pets.remove(pet);
+    }
+
+    // PROTEÇÃO DE ENCAPSULAMENTO
+    public List<Pet> getPets() {
+        return List.copyOf(pets); // Retorna cópia imutável
+    }
+
+    // Getters e Setters convencionais
     public int getId() { return id; }
     public String getNome() { return nome; }
     public String getCpf() { return cpf; }
     public String getTelefone() { return telefone; }
     public String getEmail() { return email; }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
+    public void setTelefone(String telefone) { this.telefone = telefone; }
     public void setEmail(String email) {
-        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
-            throw new IllegalArgumentException("E-mail inválido. Deve conter o caractere '@'.");
-        }
+        if (email == null || !email.contains("@")) throw new IllegalArgumentException("E-mail inválido.");
         this.email = email;
     }
 }
