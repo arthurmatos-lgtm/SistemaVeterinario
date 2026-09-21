@@ -1,5 +1,3 @@
-package br.com.sistemaVeterinario.model;
-
 import java.time.LocalDateTime;
 
 public class Consulta {
@@ -9,13 +7,13 @@ public class Consulta {
     private float pesoAferido;
     private StatusConsulta status;
     private Pet pet;
-    
-    // COMPOSIÇÃO: O Receituario (parte) é gerenciado integralmente pela Consulta (todo)
+
+    // COMPOSIÇÃO: Objeto 'parte' mantido internamente
     private Receituario receituario;
 
     public Consulta(int id, LocalDateTime dataHora, String sintomas, float pesoAferido, Pet pet) {
         if (id <= 0) throw new IllegalArgumentException("ID da Consulta deve ser maior que zero.");
-        if (dataHora == null) throw new IllegalArgumentException("Data/hora é obrigatória.");
+        if (dataHora == null) throw new IllegalArgumentException("Data/Hora é obrigatória.");
         if (pet == null) throw new IllegalArgumentException("Pet é obrigatório.");
 
         this.id = id;
@@ -24,38 +22,39 @@ public class Consulta {
         this.pesoAferido = pesoAferido;
         this.pet = pet;
         this.status = StatusConsulta.AGENDADA;
-        this.receituario = null; // Inicia sem receituário
+        this.receituario = null;
     }
 
     // CRIAÇÃO INTERNA DA PARTE (COMPOSIÇÃO)
     public void emitirReceituario(int idReceituario, String medicamentos, String modoDeUso) {
         if (this.status != StatusConsulta.REALIZADA) {
-            throw new IllegalStateException("Só é possível emitir receituário para consultas já REALIZADAS.");
+            throw new IllegalStateException("Só é possível emitir receituário para consultas REALIZADAS.");
         }
-        // A parte nasce AQUI DENTRO, garantindo que o ciclo de vida depende da Consulta
+        // A parte nasce aqui dentro, recebendo 'this' como referência da consulta
         this.receituario = new Receituario(idReceituario, medicamentos, modoDeUso, this);
     }
 
-    // ESBOÇO DO MÉTODO DE REMOÇÃO
-    public void cancelarReceituario() {
-        if (this.receituario == null) {
-            throw new IllegalStateException("Não há receituário associado a esta consulta para ser cancelado.");
-        }
-        // Ao anular a referência, a parte deixa de existir no contexto desta consulta
+    // REMOÇÃO / ESVAZIAMENTO DA PARTE
+    public void cancelarConsulta() {
+        this.status = StatusConsulta.CANCELADA;
+        // Destruição da parte: o receituário deixa de existir com o cancelamento da consulta
         this.receituario = null;
     }
 
-    // ESBOÇO DO CÁLCULO/PROCESSAMENTO DELEGADO À PARTE
-    public String obterResumoMedicacao() {
+    public void removerReceituario() {
         if (this.receituario == null) {
-            return "Nenhum medicamento prescrito para esta consulta.";
+            throw new IllegalStateException("Não há receituário ativo nesta consulta.");
         }
-        // Delegação de responsabilidade: a Consulta pede as informações formatadas para o Receituario
-        return this.receituario.gerarTextoFormatado();
+        this.receituario = null;
     }
 
-    public void agendar() {
-        this.status = StatusConsulta.AGENDADA;
+    // DELEGAÇÃO DE PROCESSAMENTO
+    public String obterTextoReceita() {
+        if (this.receituario == null) {
+            return "Sem receituário associado.";
+        }
+        // DELEGAÇÃO: repassa a responsabilidade de formatação para a classe Receituario
+        return this.receituario.gerarPrescricaoFormatada();
     }
 
     public void realizar() {
@@ -65,12 +64,8 @@ public class Consulta {
         }
     }
 
-    // Getters
     public int getId() { return id; }
-    public LocalDateTime getDataHora() { return dataHora; }
-    public String getSintomas() { return sintomas; }
-    public float getPesoAferido() { return pesoAferido; }
     public StatusConsulta getStatus() { return status; }
-    public Pet getPet() { return pet; }
     public Receituario getReceituario() { return receituario; }
+    public Pet getPet() { return pet; }
 }
