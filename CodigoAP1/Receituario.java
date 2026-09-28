@@ -1,3 +1,5 @@
+package br.com.sistemaVeterinario.model;
+
 import java.time.LocalDateTime;
 
 public class Receituario {
@@ -7,11 +9,9 @@ public class Receituario {
     private LocalDateTime dataEmissao;
     private Consulta consulta;
 
-    // Construtor com acesso restrito ao pacote: garante que apenas a Consulta crie a instância
+    // Construtor protected: apenas a Consulta (no mesmo pacote) pode instanciar o Receituario
     protected Receituario(int id, String medicamentos, String modoDeUso, Consulta consulta) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("ID do receituário deve ser maior que zero.");
-        }
+        if (id <= 0) throw new IllegalArgumentException("ID do receituário deve ser maior que zero.");
         if (medicamentos == null || medicamentos.trim().isEmpty()) {
             throw new IllegalArgumentException("Medicamentos não podem estar em branco.");
         }
@@ -29,8 +29,7 @@ public class Receituario {
         this.dataEmissao = LocalDateTime.now();
     }
 
-    // CÁLCULO / PROCESSAMENTO DELEGADO
-    // A própria parte assume a responsabilidade de formatar seus dados e calcular linhas de prescrição
+    // --- CÁLCULO / PROCESSAMENTO DELEGADO ---
     public String gerarPrescricaoFormatada() {
         return String.format(
             "| RECEITUARIO #%d | Data: %s |\nMedicamento(s): %s\nInstrucoes de Uso: %s",
