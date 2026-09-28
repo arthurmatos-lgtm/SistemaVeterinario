@@ -1,5 +1,6 @@
+package br.com.sistemaVeterinario.model;
+
 public enum StatusConsulta {
-    PENDENTE,
     AGENDADA,
     REALIZADA,
     CANCELADA
