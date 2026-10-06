@@ -10,5 +10,8 @@
 |-------|------|------------|---------------------------|-----------------------------------|
 | Atividade 1 | 03/08/2026 | gemini | Revisão das historias dos usuarios e ideias para criação das tais | Escolha do domínio, definição do problema/usuários e decisão de prioridades |
 | AP1 | *a preencher no Encontro 5* | gemini | Revisão do codigo para ver se estava faltando alguma acentuação no mesmo ou algum linha faltante | escolha do encapsulamento |
+| Atividade 7 | 14/09/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
+| Atividade 8 | 28/09/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
+| Atividade 9 | 28/09/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
 | AP2 | *a preencher no Encontro 10* | | | |
 | AS | *a preencher no Encontro 15* | | | |
