@@ -28,15 +28,29 @@ Clínicas veterinárias de pequeno e médio porte enfrentam dificuldades para ma
 ## Estrutura do projeto
 
 ```text
-├── model/                                     # classes de domínio e enums
-│   ├── Consulta.java
-│   ├── EspeciePet.java
-│   ├── Pet.java
-│   ├── StatusConsulta.java
-│   └── Tutor.java
-└── service/                                   # ponto de entrada da aplicação
-    └── Main.java
-
+SistemaVeterinario/
+├── model/                               
+│   ├── Animal.java                      
+│   ├── Cachorro.java                    
+│   ├── Gato.java                       
+│   ├── Tutor.java                       
+│   ├── Consulta.java                    
+│   ├── Receituario.java                
+│   ├── EspeciePet.java                  
+│   └── StatusConsulta.java             
+│
+├── strategy/                           
+│   ├── EstrategiaCobranca.java          
+│   ├── CobrancaParticular.java          
+│   └── CobrancaPlanoFidelidade.java     
+│
+├── service/                            
+│   └── Main.java                       
+│
+└── test/                               
+    ├── TestAnimal.java                  
+    ├── TestConsulta.java               
+    └── TestTutor.java                   
 ```
 
 ## Integrantes
