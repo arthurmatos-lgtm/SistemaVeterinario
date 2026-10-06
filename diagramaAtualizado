@@ -1,5 +1,5 @@
-+-------------------+
-                  |   <<enumeration>> |
+                  +-------------------+
+                  |  <<enumeration>>  |
                   |    EspeciePet     |
                   +-------------------+
                   | CAO               |
@@ -10,45 +10,79 @@
                   +-------------------+
                             ^
                             |
-+-------------------+       |           +----------------------------------+
-|       Tutor       |       |           |               Pet                |
-+-------------------+       |           +----------------------------------+
-| - id: int         |       |           | - id: int                        |
-| - nome: String    |       |           | - nome: String                   |
-| - cpf: String     |       |           | - especie: EspeciePet            |
-| - telefone: String|       |           | - raca: String                   |
-| - email: String   |       |           | - peso: float                    |
-| - pets: List<Pet> |       |           | - alergias: String               |
-+-------------------+ 1   0..*          | - tutor: Tutor                   |
-| + adicionarPet()  |-------------------| - historicoConsultas: List<Cons.>|
-| + buscarPet()     |                   +----------------------------------+
-| + removerPet()    |                             1 |
-| + getPets()       |                               |
-+-------------------+                               |
-                                                    | 0..*
-                  +-------------------+             |
-                  |   <<enumeration>> |             |
-                  |  StatusConsulta   |             v
-                  +-------------------+    +-------------------------------+
-                  | AGENDADA          |<---|           Consulta            |
-                  | REALIZADA         |    +-------------------------------+
-                  | CANCELADA         |    | - id: int                     |
-                  +-------------------+    | - dataHora: LocalDateTime     |
-                                           | - sintomas: String            |
-                                           | - pesoAferido: float          |
-                                           | - status: StatusConsulta      |
-                                           | - pet: Pet                    |
-                                           +-------------------------------+
-                                                      1 |
-                                                        |
-                                                        | 0..1
-                                                        v
-                                           +-------------------------------+
-                                           |          Receituario          |
-                                           +-------------------------------+
-                                           | - id: int                     |
-                                           | - medicamentos: String        |
-                                           | - modoDeUso: String           |
-                                           | - dataEmissao: LocalDateTime  |
-                                           | - consulta: Consulta          |
-                                           +-------------------------------+
++-------------------+       |            +------------------------------------+
+|       Tutor       |       |            |          <<abstract>>              |
++-------------------+       |            |             Animal                 |
+| - id: int         |       |            +------------------------------------+
+| - nome: String    |       |            | # id: int                          |
+| - cpf: String     |       |            | # nome: String                     |
+| - telefone: String|       |            | # especie: EspeciePet              |
+| - email: String   |       |            | # raca: String                     |
+| - animais: List   | 1   0..*           | # peso: float                      |
++-------------------+--------------------> # alergias: String                 |
+| + adicionarAnimal()|                   | # tutor: Tutor                     |
+| + removerAnimal() |                    | # historicoConsultas: List<Cons.>  |
+| + buscarAnimal()  |                    +------------------------------------+
+| + getAnimais()    |                    | + calcularNecessidadeCalorica()*   |
++-------------------+                    | + gerarRecomendacaoCuidados()*     |
+                                         +------------------------------------+
+                                                           ^
+                                                           |
+                                       +-------------------+-------------------+
+                                       |                                       |
+                       +-------------------------------+       +-------------------------------+
+                       |           Cachorro            |       |             Gato              |
+                       +-------------------------------+       +-------------------------------+
+                       | - adestrado: boolean          |       | - ehCastrado: boolean         |
+                       +-------------------------------+       +-------------------------------+
+                       | + calcularNecessidadeCalorica()|      | + calcularNecessidadeCalorica()|
+                       | + gerarRecomendacaoCuidados() |       | + gerarRecomendacaoCuidados() |
+                       +-------------------------------+       +-------------------------------+
+                                       ^
+                                       | 1
+                                       |
+                                       | 0..*
+                  +-------------------+|
+                  |  <<enumeration>>  ||
+                  |  StatusConsulta   ||
+                  +-------------------+|         +----------------------------------+
+                  | AGENDADA          ||         |     <<interface>>                |
+                  | REALIZADA         ||         |   EstrategiaCobranca             |
+                  | CANCELADA         ||         +----------------------------------+
+                  +-------------------+|         | + calcularValorFinal()*          |
+                            ^          |         +----------------------------------+
+                            |          |                          ^
+                            |          v                          |
+                       +---------------+---------------+          +------------------+
+                       |           Consulta            |          |                  |
+                       +-------------------------------+   +--------------+   +--------------+
+                       | - id: int                     |   | Cobranca     |   | Cobranca     |
+                       | - dataHora: LocalDateTime     |   | Particular   |   | PlanoFidel.  |
+                       | - sintomas: String            |   +--------------+   +--------------+
+                       | - pesoAferido: float          |   | + calcular...|   | + calcular...|
+                       | - valorBase: double           |   +--------------+   +--------------+
+                       | - status: StatusConsulta      |          ^
+                       | - animal: Animal              |          |
+                       | - estrategia: EstrategiaCobr. |----------+ (1 utiliza 1)
+                       | - receituario: Receituario    |
+                       +-------------------------------+
+                       | + emitirReceituario()         |
+                       | + cancelarConsulta()          |
+                       | + calcularValorTotal()        |
+                       +-------------------------------+
+                                       | 1
+                                       |
+                                       | ◆ (Composição - Todo/Parte)
+                                       | 0..1
+                                       v
+                       +-------------------------------+
+                       |          Receituario          |
+                       +-------------------------------+
+                       | - id: int                     |
+                       | - medicamentos: String        |
+                       | - modoDeUso: String           |
+                       | - dataEmissao: LocalDateTime  |
+                       +-------------------------------+
+                       | # Receituario()               |
+                       | + formatarReceita()           |
+                       +-------------------------------+
