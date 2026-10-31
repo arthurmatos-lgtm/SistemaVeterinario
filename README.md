@@ -16,6 +16,16 @@ Clínicas veterinárias enfrentam dificuldades para organizar o histórico de sa
 - Veterinário / Profissional de saúde
 - Tutor / Cliente
 
+## Funcionalidades e Regras de Negócio (Atividade 10)
+
+- **Gestão de Tutores e Pacientes:** Cadastrar tutores e registrar animais de estimação (`Cachorro` ou `Gato`) associados ao seu cadastro, garantindo o encapsulamento das coleções internas.
+- **Identificação Automática:** Gerar o identificador único (`id`) de cada paciente automaticamente no momento da instanciação.
+- **Cálculo Metabólico Polimórfico:** Calcular a necessidade calórica diária do animal de acordo com a sua espécie e características específicas.
+- **Controle de Atendimento e Composição:** Agendar e controlar o status das consultas, com emissão e destruição gerenciadas de receituários (composição estrita).
+- **Cobrança Flexível (Strategy):** Calcular o valor final da consulta aplicando diferentes estratégias de pagamento (`CobrancaParticular` ou `CobrancaPlanoFidelidade`).
+- **Validações Defensivas:** Bloquear a criação ou modificação de registros com dados inválidos (como nomes vazios, pesos negativos ou parâmetros nulos).
+- **Consultas e Histórico:** Acompanhar o estado atual dos atendimentos e consultar o histórico médico vinculado ao animal.
+
 ## Requisitos e Incrementos de POO (Atividade 10)
 
 - **Herança e Classes Abstratas:** Superclasse abstrata `Animal` como base para a especialização de `Cachorro` e `Gato`, com cálculo de necessidade calórica diária polimórfico.
