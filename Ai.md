@@ -14,4 +14,6 @@
 | Atividade 8 | 28/09/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
 | Atividade 9 | 28/09/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
 | AP2 | *a preencher no Encontro 10* | | | |
+| Atividade 10 | 10/10/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
+| Atividade 11 | 30/10/2026 | gemini | Frase da justificativa selecionada (usada para correções de texto). | a realização do codigo em java |
 | AS | *a preencher no Encontro 15* | | | |
