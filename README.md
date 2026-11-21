@@ -16,15 +16,17 @@ Clínicas veterinárias enfrentam dificuldades para organizar o histórico de sa
 - Veterinário / Profissional de saúde
 - Tutor / Cliente
 
-## Funcionalidades e Regras de Negócio (Atividade 10)
+## Regras de Negócio
 
-- **Gestão de Tutores e Pacientes:** Cadastrar tutores e registrar animais de estimação (`Cachorro` ou `Gato`) associados ao seu cadastro, garantindo o encapsulamento das coleções internas.
-- **Identificação Automática:** Gerar o identificador único (`id`) de cada paciente automaticamente no momento da instanciação.
-- **Cálculo Metabólico Polimórfico:** Calcular a necessidade calórica diária do animal de acordo com a sua espécie e características específicas.
-- **Controle de Atendimento e Composição:** Agendar e controlar o status das consultas, com emissão e destruição gerenciadas de receituários (composição estrita).
-- **Cobrança Flexível (Strategy):** Calcular o valor final da consulta aplicando diferentes estratégias de pagamento (`CobrancaParticular` ou `CobrancaPlanoFidelidade`).
-- **Validações Defensivas:** Bloquear a criação ou modificação de registros com dados inválidos (como nomes vazios, pesos negativos ou parâmetros nulos).
-- **Consultas e Histórico:** Acompanhar o estado atual dos atendimentos e consultar o histórico médico vinculado ao animal.
+| Regra | Comportamento |
+| :--- | :--- |
+| **RN1** | O valor cobrado pela consulta depende do tipo do animal atendido. |
+| **RN2** | Consulta de Cachorro custa R$ 100,00 fixo. |
+| **RN3** | Consulta de Gato custa R$ 80,00 fixo. |
+| **RN4** | A entrada ocupa um consultório livre; sem consultório livre, o atendimento é recusado. |
+| **RN5** | A saída cobra pela política escolhida na entrada e libera o consultório após a finalização do atendimento. |
+| **RN6** | O nome do animal é obrigatório e não pode ser nulo ou composto apenas por espaços em branco. |
+| **RN7** | Somente os tipos `CACHORRO` e `GATO` são aceitos no atendimento clínico. |
 
 ## Requisitos e Incrementos de POO (Atividade 10)
 
@@ -36,42 +38,6 @@ Clínicas veterinárias enfrentam dificuldades para organizar o histórico de sa
 - **Testes Automatizados (JUnit 5):** Cobertura total das regras de negócio executada via Maven.
 - **Limpeza de Código Legado:** Remoção completa do enum obsoleto `EspeciePet.java`.
 
----
-
-## Estrutura do Projeto
-
-```text
-SistemaVeterinario/
-├── pom.xml                                    # Configuração Maven e dependências (JUnit 5)
-└── src/
-    ├── main/
-    │   └── java/
-    │       └── br/com/sistemaveterinario/
-    │           ├── model/                     # Entidades e regras de domínio
-    │           │   ├── Animal.java            # Superclasse abstrata (ID autoincrementado)
-    │           │   ├── Cachorro.java          # Subclasse concreta
-    │           │   ├── Gato.java              # Subclasse concreta
-    │           │   ├── Tutor.java             # Encapsulamento e Coleções imutáveis
-    │           │   ├── Consulta.java          # Composição e Delegação
-    │           │   ├── Receituario.java       # Parte gerida pela Consulta
-    │           │   └── StatusConsulta.java    # Enum de estados do atendimento
-    │           │
-    │           ├── strategy/                  # Padrão Strategy (Polimorfismo)
-    │           │   ├── EstrategiaCobranca.java        # Interface polimórfica
-    │           │   ├── CobrancaParticular.java        # Implementação concreta
-    │           │   └── CobrancaPlanoFidelidade.java   # Implementação concreta
-    │           │
-    │           └── service/
-    │               └── Main.java              # Ponto de entrada (Demonstração completa)
-    │
-    └── test/
-        └── java/
-            └── br/com/sistemaveterinario/     # Suíte de testes automatizados (JUnit 5)
-                ├── TestAnimal.java            # Valida Herança e ID automático
-                ├── TestConsulta.java          # Valida Strategy e Composição
-                └── TestTutor.java             # Valida coleção de animais do tutor
-
-```
 ---
 ## Integrantes
 * Arthur Passos de Matos
