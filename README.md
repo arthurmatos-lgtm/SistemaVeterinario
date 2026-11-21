@@ -38,6 +38,13 @@ Clínicas veterinárias enfrentam dificuldades para organizar o histórico de sa
 - **Testes Automatizados (JUnit 5):** Cobertura total das regras de negócio executada via Maven.
 - **Limpeza de Código Legado:** Remoção completa do enum obsoleto `EspeciePet.java`.
 
+## Persistência de Atendimentos (Atividade 12)
+
+Cada registro salvo no repositório representa a efetivação da **RN5**, garantindo que, após a liberação do consultório, o histórico imutável do atendimento finalizado (animal, espécie, horários e valor cobrado pela política da entrada) permaneça persistido.
+
+### Evidência de Duas Execuções Seguidas
+<img width="773" height="476" alt="teste" src="https://github.com/user-attachments/assets/10af9d34-a719-426c-b371-62cc7676b875" />
+
 ---
 ## Integrantes
 * Arthur Passos de Matos
