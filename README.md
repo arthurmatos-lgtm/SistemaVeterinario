@@ -102,8 +102,6 @@ git checkout main
 
 As tags abrem uma versão de estudo em estado destacado (*detached HEAD*). Ao trocar de versão, use `mvn clean test` para remover classes compiladas de pacotes antigos. As tags `v11`, `v12` e `v13` foram preservadas; a tag `v14` identifica o estado do Encontro 14.
 
-## Diagrama de classes
-
 ## Saídas reais da verificação
 
 Trecho final copiado da execução de `mvn test`:
@@ -149,7 +147,6 @@ Os testes usam horários fixos e diretórios `@TempDir`. O registro de melhorias
 ## Documentação e uso de IA
 
 * `docs/melhorias.md` — Melhorias do Encontro 14.
-* `docs/uml.png` — Diagrama de classes atualizado.
 * `AI.md` — Registro de uso de IA.
 
 Gemini foi usado para ampliar os testes, executar as refatorações solicitadas e atualizar a documentação. O domínio, as regras de negócio e os requisitos dos encontros foram validados e revisados localmente.
