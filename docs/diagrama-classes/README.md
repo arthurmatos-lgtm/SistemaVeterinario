@@ -1,7 +1,5 @@
-    ```mermaid
+```mermaid
 classDiagram
-    direction TB
-
     namespace dominio {
         class VeterinariaException {
             <<exception>>
@@ -119,4 +117,15 @@ classDiagram
     Main ..> ConsoleClinica : inicia
     Main ..> AtendimentoService : monta
     Main ..> ArquivoAtendimentoRepositorio : instancia
+```
+
+```mermaid
+flowchart TD
+    app --> servico
+    app --> dominio
+    app --> repositorio
+    servico --> dominio
+    servico --> repositorio
+    repositorio --> dominio
+    dominio --> cobranca
 ```
