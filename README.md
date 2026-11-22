@@ -1,5 +1,4 @@
-```markdown
-# Sistema Veterinário 
+# Sistema Veterinário (Projeto de Demonstração)
 
 Projeto desenvolvido para Fundamentos de Programação Orientada a Objetos — ADS, ULBRA, 2026/2.
 
