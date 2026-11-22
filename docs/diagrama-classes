@@ -1,6 +1,3 @@
-# Classes
-
-```mermaid
 classDiagram
     direction TB
 
@@ -121,18 +118,3 @@ classDiagram
     Main ..> ConsoleClinica : inicia
     Main ..> AtendimentoService : monta
     Main ..> ArquivoAtendimentoRepositorio : instancia
-
-```
-# Dependências entre pacotes
-
-```mermaid
-flowchart TD
-    app --> servico
-    app --> dominio
-    app --> repositorio
-    servico --> dominio
-    servico --> repositorio
-    repositorio --> dominio
-    dominio --> cobranca
-
-```
