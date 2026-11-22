@@ -1,3 +1,9 @@
+## Diagramas — estado v14
+
+Os diagramas Mermaid representam as classes de produção e suas dependências.
+
+### Classes
+
 ```mermaid
 classDiagram
     namespace dominio {
@@ -119,13 +125,19 @@ classDiagram
     Main ..> ArquivoAtendimentoRepositorio : instancia
 ```
 
+`consultorios` mantém a composição das salas de atendimento (`List<Consultorio>`). A operação `FichaAtendimento.finalizar` apenas calcula o valor pela política armazenada; `ClinicaVeterinaria.finalizarAtendimento` valida o horário, libera o consultório e gera o `RegistroAtendimento`, enquanto `AtendimentoService` coordena a persistência no repositório. Os campos do `record` representam seus componentes, acessíveis pelos métodos gerados `nomeAnimal()`, `tipoAnimal()`, `entrada()`, `saida()` e `valorCobrado()`.
+
+### Dependências entre pacotes
+
 ```mermaid
-flowchart TD
+flowchart LR
     app --> servico
-    app --> dominio
-    app --> repositorio
-    servico --> dominio
+    app -.->|composição e erro técnico| repositorio
+    app -.->|composição, registros e exceções| dominio
     servico --> repositorio
+    servico --> dominio
     repositorio --> dominio
     dominio --> cobranca
 ```
+
+As setas indicam dependências de código. O domínio não importa `repositorio`. As dependências adicionais de `app` permitem montar os objetos na raiz de composição (`Main`) e apresentar registros e erros (`ConsoleClinica`).
