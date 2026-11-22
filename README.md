@@ -45,6 +45,21 @@ Cada registro salvo no repositório representa a efetivação da **RN5**, garant
 ### Evidência de Duas Execuções Seguidas
 <img width="773" height="476" alt="teste" src="https://github.com/user-attachments/assets/10af9d34-a719-426c-b371-62cc7676b875" />
 
+## Tratamento de erros
+
+As exceções próprias da aplicação herdam de `RuntimeException` (exceções não verificadas) porque representam violações de regras de negócio ou falhas técnicas irrecuperáveis localmente, permitindo que o fluxo de domínio e serviço permaneça limpo até que a camada de apresentação (`app`) as capture e exiba mensagens orientativas ao usuário. O bloco `finally` é utilizado na apresentação (`ConsoleClinica`) para exibir e confirmar o estado consistente dos consultórios após cada tentativa, independentemente de sucesso ou falha.
+
+| Situação | Exceção | Camada que lança | Camada que trata | Mensagem ao usuário |
+| :--- | :--- | :--- | :--- | :--- |
+| Nome do animal nulo ou em branco (RN6) | `DadosAnimalInvalidosException` | `dominio` (`Animal`) | `app` (`ConsoleClinica`) | `Nome do animal inválido: não pode ser vazio. Informe um nome válido para o cadastro.` |
+| Todos os consultórios ocupados (RN4) | `ConsultorioIndisponivelException` | `dominio` (`ClinicaVeterinaria`) | `app` (`ConsoleClinica`) | `Todos os consultórios estão ocupados no momento. Finalize um atendimento antes de iniciar outro.` |
+| Horário de saída anterior à entrada (RN5) | `HorarioAtendimentoInvalidoException` | `dominio` (`ClinicaVeterinaria`) | `app` (`ConsoleClinica`) | `Horário de saída inválido: não pode ser anterior à entrada. Informe um horário igual ou posterior à entrada.` |
+| Falha de I/O ou arquivo CSV corrompido | `RepositorioException` | `repositorio` (`ArquivoAtendimentoRepositorio`) | `app` (`ConsoleClinica`) | `Falha técnica ao gravar/ler arquivo de atendimentos...` |
+
+### Evidência de Execução (Três erros tratados)
+<img width="717" height="478" alt="TestTerminal" src="https://github.com/user-attachments/assets/689632a6-61dc-48ac-8d97-1ed4a33d769d" />
+
+
 ---
 ## Integrantes
 * Arthur Passos de Matos
