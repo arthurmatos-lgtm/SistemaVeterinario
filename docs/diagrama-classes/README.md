@@ -1,3 +1,4 @@
+    ```mermaid
 classDiagram
     direction TB
 
@@ -118,3 +119,4 @@ classDiagram
     Main ..> ConsoleClinica : inicia
     Main ..> AtendimentoService : monta
     Main ..> ArquivoAtendimentoRepositorio : instancia
+```
